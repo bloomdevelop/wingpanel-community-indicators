@@ -31,7 +31,7 @@ dependencies = {
 libdir = join_paths(get_option('prefix'), get_option('libdir'))
 
 indicator_name = 'ayatana'
-indicator_dir  = dependencies['wingpanel'].get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
+indicator_dir  = dependencies['wingpanel'].get_variable(pkgconfig: 'indicatorsdir', pkgconfig_define: ['libdir', libdir])
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Bindings:
@@ -53,7 +53,7 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(gettext_name),
 
 constants = configuration_data()
 constants.set_quoted('WINGPANEL_INDICATOR_DIR', join_paths(get_option('prefix'), indicator_dir))
-constants.set_quoted('AYATANA_INDICATOR_DIR',   dependencies['indicator3'].get_pkgconfig_variable('indicatordir'))
+constants.set_quoted('AYATANA_INDICATOR_DIR',   dependencies['indicator3'].get_variable(pkgconfig: 'indicatordir'))
 constants.set_quoted('INDICATOR_NAME',          indicator_name)
 constants.set_quoted('DATA_DIR',                join_paths(get_option('prefix'), get_option('datadir')))
 constants.set_quoted('GETTEXT_PACKAGE',         gettext_name)
